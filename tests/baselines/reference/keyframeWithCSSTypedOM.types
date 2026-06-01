@@ -1,0 +1,203 @@
+//// [tests/cases/compiler/keyframeWithCSSTypedOM.ts] ////
+
+=== keyframeWithCSSTypedOM.ts ===
+// Tests that the Keyframe interface allows CSS Typed OM objects (CSSStyleValue subclasses)
+// for CSS property values, as per the Web Animations API spec.
+
+const keyframes: Keyframe[] = [
+>keyframes : Keyframe[]
+>          : ^^^^^^^^^^
+>[    { transform: "rotate(0deg)" },    { transform: new CSSRotate(CSS.number(45), CSS.number(0), CSS.number(0), CSS.deg(90)) },] : ({ transform: string; } | { transform: CSSRotate; })[]
+>                                                                                                                                 : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    { transform: "rotate(0deg)" },
+>{ transform: "rotate(0deg)" } : { transform: string; }
+>                              : ^^^^^^^^^^^^^^^^^^^^^^
+>transform : string
+>          : ^^^^^^
+>"rotate(0deg)" : "rotate(0deg)"
+>               : ^^^^^^^^^^^^^^
+
+    { transform: new CSSRotate(CSS.number(45), CSS.number(0), CSS.number(0), CSS.deg(90)) },
+>{ transform: new CSSRotate(CSS.number(45), CSS.number(0), CSS.number(0), CSS.deg(90)) } : { transform: CSSRotate; }
+>                                                                                        : ^^^^^^^^^^^^^^^^^^^^^^^^^
+>transform : CSSRotate
+>          : ^^^^^^^^^
+>new CSSRotate(CSS.number(45), CSS.number(0), CSS.number(0), CSS.deg(90)) : CSSRotate
+>                                                                         : ^^^^^^^^^
+>CSSRotate : { new (angle: CSSNumericValue): CSSRotate; new (x: CSSNumberish, y: CSSNumberish, z: CSSNumberish, angle: CSSNumericValue): CSSRotate; prototype: CSSRotate; }
+>          : ^^^^^^^     ^^               ^^^         ^^^^^^^ ^^            ^^ ^^            ^^ ^^            ^^     ^^               ^^^         ^^^^^^^^^^^^^         ^^^
+>CSS.number(45) : CSSUnitValue
+>               : ^^^^^^^^^^^^
+>CSS.number : (value: number) => CSSUnitValue
+>           : ^     ^^      ^^^^^            
+>CSS : typeof CSS
+>    : ^^^^^^^^^^
+>number : (value: number) => CSSUnitValue
+>       : ^     ^^      ^^^^^            
+>45 : 45
+>   : ^^
+>CSS.number(0) : CSSUnitValue
+>              : ^^^^^^^^^^^^
+>CSS.number : (value: number) => CSSUnitValue
+>           : ^     ^^      ^^^^^            
+>CSS : typeof CSS
+>    : ^^^^^^^^^^
+>number : (value: number) => CSSUnitValue
+>       : ^     ^^      ^^^^^            
+>0 : 0
+>  : ^
+>CSS.number(0) : CSSUnitValue
+>              : ^^^^^^^^^^^^
+>CSS.number : (value: number) => CSSUnitValue
+>           : ^     ^^      ^^^^^            
+>CSS : typeof CSS
+>    : ^^^^^^^^^^
+>number : (value: number) => CSSUnitValue
+>       : ^     ^^      ^^^^^            
+>0 : 0
+>  : ^
+>CSS.deg(90) : CSSUnitValue
+>            : ^^^^^^^^^^^^
+>CSS.deg : (value: number) => CSSUnitValue
+>        : ^     ^^      ^^^^^            
+>CSS : typeof CSS
+>    : ^^^^^^^^^^
+>deg : (value: number) => CSSUnitValue
+>    : ^     ^^      ^^^^^            
+>90 : 90
+>   : ^^
+
+];
+
+const element = document.createElement("div");
+>element : HTMLDivElement
+>        : ^^^^^^^^^^^^^^
+>document.createElement("div") : HTMLDivElement
+>                              : ^^^^^^^^^^^^^^
+>document.createElement : { <K extends keyof HTMLElementTagNameMap>(tagName: K, options?: ElementCreationOptions): HTMLElementTagNameMap[K]; <K extends keyof HTMLElementDeprecatedTagNameMap>(tagName: K, options?: ElementCreationOptions): HTMLElementDeprecatedTagNameMap[K]; (tagName: string, options?: ElementCreationOptions): HTMLElement; }
+>                       : ^^^ ^^^^^^^^^                           ^^       ^^ ^^       ^^^                      ^^^                        ^^^ ^^^^^^^^^                                     ^^       ^^ ^^       ^^^                      ^^^                                  ^^^       ^^      ^^       ^^^                      ^^^           ^^^
+>document : Document
+>         : ^^^^^^^^
+>createElement : { <K extends keyof HTMLElementTagNameMap>(tagName: K, options?: ElementCreationOptions): HTMLElementTagNameMap[K]; <K extends keyof HTMLElementDeprecatedTagNameMap>(tagName: K, options?: ElementCreationOptions): HTMLElementDeprecatedTagNameMap[K]; (tagName: string, options?: ElementCreationOptions): HTMLElement; }
+>              : ^^^ ^^^^^^^^^                           ^^       ^^ ^^       ^^^                      ^^^                        ^^^ ^^^^^^^^^                                     ^^       ^^ ^^       ^^^                      ^^^                                  ^^^       ^^      ^^       ^^^                      ^^^           ^^^
+>"div" : "div"
+>      : ^^^^^
+
+element.animate(
+>element.animate(    [        { transform: "rotate(0deg)" },        { transform: new CSSRotate(CSS.number(45), CSS.number(0), CSS.number(0), CSS.deg(90)) },    ],    {        duration: 500,    },) : Animation
+>                                                                                                                                                                                                    : ^^^^^^^^^
+>element.animate : (keyframes: Keyframe[] | PropertyIndexedKeyframes | null, options?: number | KeyframeAnimationOptions) => Animation
+>                : ^         ^^                                            ^^       ^^^                                 ^^^^^         
+>element : HTMLDivElement
+>        : ^^^^^^^^^^^^^^
+>animate : (keyframes: Keyframe[] | PropertyIndexedKeyframes | null, options?: number | KeyframeAnimationOptions) => Animation
+>        : ^         ^^                                            ^^       ^^^                                 ^^^^^         
+
+    [
+>[        { transform: "rotate(0deg)" },        { transform: new CSSRotate(CSS.number(45), CSS.number(0), CSS.number(0), CSS.deg(90)) },    ] : ({ transform: string; } | { transform: CSSRotate; })[]
+>                                                                                                                                             : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+        { transform: "rotate(0deg)" },
+>{ transform: "rotate(0deg)" } : { transform: string; }
+>                              : ^^^^^^^^^^^^^^^^^^^^^^
+>transform : string
+>          : ^^^^^^
+>"rotate(0deg)" : "rotate(0deg)"
+>               : ^^^^^^^^^^^^^^
+
+        { transform: new CSSRotate(CSS.number(45), CSS.number(0), CSS.number(0), CSS.deg(90)) },
+>{ transform: new CSSRotate(CSS.number(45), CSS.number(0), CSS.number(0), CSS.deg(90)) } : { transform: CSSRotate; }
+>                                                                                        : ^^^^^^^^^^^^^^^^^^^^^^^^^
+>transform : CSSRotate
+>          : ^^^^^^^^^
+>new CSSRotate(CSS.number(45), CSS.number(0), CSS.number(0), CSS.deg(90)) : CSSRotate
+>                                                                         : ^^^^^^^^^
+>CSSRotate : { new (angle: CSSNumericValue): CSSRotate; new (x: CSSNumberish, y: CSSNumberish, z: CSSNumberish, angle: CSSNumericValue): CSSRotate; prototype: CSSRotate; }
+>          : ^^^^^^^     ^^               ^^^         ^^^^^^^ ^^            ^^ ^^            ^^ ^^            ^^     ^^               ^^^         ^^^^^^^^^^^^^         ^^^
+>CSS.number(45) : CSSUnitValue
+>               : ^^^^^^^^^^^^
+>CSS.number : (value: number) => CSSUnitValue
+>           : ^     ^^      ^^^^^            
+>CSS : typeof CSS
+>    : ^^^^^^^^^^
+>number : (value: number) => CSSUnitValue
+>       : ^     ^^      ^^^^^            
+>45 : 45
+>   : ^^
+>CSS.number(0) : CSSUnitValue
+>              : ^^^^^^^^^^^^
+>CSS.number : (value: number) => CSSUnitValue
+>           : ^     ^^      ^^^^^            
+>CSS : typeof CSS
+>    : ^^^^^^^^^^
+>number : (value: number) => CSSUnitValue
+>       : ^     ^^      ^^^^^            
+>0 : 0
+>  : ^
+>CSS.number(0) : CSSUnitValue
+>              : ^^^^^^^^^^^^
+>CSS.number : (value: number) => CSSUnitValue
+>           : ^     ^^      ^^^^^            
+>CSS : typeof CSS
+>    : ^^^^^^^^^^
+>number : (value: number) => CSSUnitValue
+>       : ^     ^^      ^^^^^            
+>0 : 0
+>  : ^
+>CSS.deg(90) : CSSUnitValue
+>            : ^^^^^^^^^^^^
+>CSS.deg : (value: number) => CSSUnitValue
+>        : ^     ^^      ^^^^^            
+>CSS : typeof CSS
+>    : ^^^^^^^^^^
+>deg : (value: number) => CSSUnitValue
+>    : ^     ^^      ^^^^^            
+>90 : 90
+>   : ^^
+
+    ],
+    {
+>{        duration: 500,    } : { duration: number; }
+>                             : ^^^^^^^^^^^^^^^^^^^^^
+
+        duration: 500,
+>duration : number
+>         : ^^^^^^
+>500 : 500
+>    : ^^^
+
+    },
+);
+
+// Also valid: other CSSStyleValue subclasses
+const keyframes2: Keyframe[] = [
+>keyframes2 : Keyframe[]
+>           : ^^^^^^^^^^
+>[    { opacity: "1" },    { opacity: new CSSUnitValue(0.5, "number") },] : ({ opacity: string; } | { opacity: CSSUnitValue; })[]
+>                                                                         : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    { opacity: "1" },
+>{ opacity: "1" } : { opacity: string; }
+>                 : ^^^^^^^^^^^^^^^^^^^^
+>opacity : string
+>        : ^^^^^^
+>"1" : "1"
+>    : ^^^
+
+    { opacity: new CSSUnitValue(0.5, "number") },
+>{ opacity: new CSSUnitValue(0.5, "number") } : { opacity: CSSUnitValue; }
+>                                             : ^^^^^^^^^^^^^^^^^^^^^^^^^^
+>opacity : CSSUnitValue
+>        : ^^^^^^^^^^^^
+>new CSSUnitValue(0.5, "number") : CSSUnitValue
+>                                : ^^^^^^^^^^^^
+>CSSUnitValue : { new (value: number, unit: string): CSSUnitValue; prototype: CSSUnitValue; }
+>             : ^^^^^^^     ^^      ^^    ^^      ^^^            ^^^^^^^^^^^^^            ^^^
+>0.5 : 0.5
+>    : ^^^
+>"number" : "number"
+>         : ^^^^^^^^
+
+];
+

@@ -1,0 +1,84 @@
+//// [tests/cases/compiler/keyframeWithCSSTypedOM.ts] ////
+
+=== keyframeWithCSSTypedOM.ts ===
+// Tests that the Keyframe interface allows CSS Typed OM objects (CSSStyleValue subclasses)
+// for CSS property values, as per the Web Animations API spec.
+
+const keyframes: Keyframe[] = [
+>keyframes : Symbol(keyframes, Decl(keyframeWithCSSTypedOM.ts, 3, 5))
+>Keyframe : Symbol(Keyframe, Decl(lib.dom.d.ts, --, --))
+
+    { transform: "rotate(0deg)" },
+>transform : Symbol(transform, Decl(keyframeWithCSSTypedOM.ts, 4, 5))
+
+    { transform: new CSSRotate(CSS.number(45), CSS.number(0), CSS.number(0), CSS.deg(90)) },
+>transform : Symbol(transform, Decl(keyframeWithCSSTypedOM.ts, 5, 5))
+>CSSRotate : Symbol(CSSRotate, Decl(lib.dom.d.ts, --, --), Decl(lib.dom.d.ts, --, --))
+>CSS.number : Symbol(CSS.number, Decl(lib.dom.d.ts, --, --))
+>CSS : Symbol(CSS, Decl(lib.dom.d.ts, --, --))
+>number : Symbol(CSS.number, Decl(lib.dom.d.ts, --, --))
+>CSS.number : Symbol(CSS.number, Decl(lib.dom.d.ts, --, --))
+>CSS : Symbol(CSS, Decl(lib.dom.d.ts, --, --))
+>number : Symbol(CSS.number, Decl(lib.dom.d.ts, --, --))
+>CSS.number : Symbol(CSS.number, Decl(lib.dom.d.ts, --, --))
+>CSS : Symbol(CSS, Decl(lib.dom.d.ts, --, --))
+>number : Symbol(CSS.number, Decl(lib.dom.d.ts, --, --))
+>CSS.deg : Symbol(CSS.deg, Decl(lib.dom.d.ts, --, --))
+>CSS : Symbol(CSS, Decl(lib.dom.d.ts, --, --))
+>deg : Symbol(CSS.deg, Decl(lib.dom.d.ts, --, --))
+
+];
+
+const element = document.createElement("div");
+>element : Symbol(element, Decl(keyframeWithCSSTypedOM.ts, 8, 5))
+>document.createElement : Symbol(Document.createElement, Decl(lib.dom.d.ts, --, --), Decl(lib.dom.d.ts, --, --), Decl(lib.dom.d.ts, --, --))
+>document : Symbol(document, Decl(lib.dom.d.ts, --, --))
+>createElement : Symbol(Document.createElement, Decl(lib.dom.d.ts, --, --), Decl(lib.dom.d.ts, --, --), Decl(lib.dom.d.ts, --, --))
+
+element.animate(
+>element.animate : Symbol(Animatable.animate, Decl(lib.dom.d.ts, --, --))
+>element : Symbol(element, Decl(keyframeWithCSSTypedOM.ts, 8, 5))
+>animate : Symbol(Animatable.animate, Decl(lib.dom.d.ts, --, --))
+
+    [
+        { transform: "rotate(0deg)" },
+>transform : Symbol(transform, Decl(keyframeWithCSSTypedOM.ts, 12, 9))
+
+        { transform: new CSSRotate(CSS.number(45), CSS.number(0), CSS.number(0), CSS.deg(90)) },
+>transform : Symbol(transform, Decl(keyframeWithCSSTypedOM.ts, 13, 9))
+>CSSRotate : Symbol(CSSRotate, Decl(lib.dom.d.ts, --, --), Decl(lib.dom.d.ts, --, --))
+>CSS.number : Symbol(CSS.number, Decl(lib.dom.d.ts, --, --))
+>CSS : Symbol(CSS, Decl(lib.dom.d.ts, --, --))
+>number : Symbol(CSS.number, Decl(lib.dom.d.ts, --, --))
+>CSS.number : Symbol(CSS.number, Decl(lib.dom.d.ts, --, --))
+>CSS : Symbol(CSS, Decl(lib.dom.d.ts, --, --))
+>number : Symbol(CSS.number, Decl(lib.dom.d.ts, --, --))
+>CSS.number : Symbol(CSS.number, Decl(lib.dom.d.ts, --, --))
+>CSS : Symbol(CSS, Decl(lib.dom.d.ts, --, --))
+>number : Symbol(CSS.number, Decl(lib.dom.d.ts, --, --))
+>CSS.deg : Symbol(CSS.deg, Decl(lib.dom.d.ts, --, --))
+>CSS : Symbol(CSS, Decl(lib.dom.d.ts, --, --))
+>deg : Symbol(CSS.deg, Decl(lib.dom.d.ts, --, --))
+
+    ],
+    {
+        duration: 500,
+>duration : Symbol(duration, Decl(keyframeWithCSSTypedOM.ts, 15, 5))
+
+    },
+);
+
+// Also valid: other CSSStyleValue subclasses
+const keyframes2: Keyframe[] = [
+>keyframes2 : Symbol(keyframes2, Decl(keyframeWithCSSTypedOM.ts, 21, 5))
+>Keyframe : Symbol(Keyframe, Decl(lib.dom.d.ts, --, --))
+
+    { opacity: "1" },
+>opacity : Symbol(opacity, Decl(keyframeWithCSSTypedOM.ts, 22, 5))
+
+    { opacity: new CSSUnitValue(0.5, "number") },
+>opacity : Symbol(opacity, Decl(keyframeWithCSSTypedOM.ts, 23, 5))
+>CSSUnitValue : Symbol(CSSUnitValue, Decl(lib.dom.d.ts, --, --), Decl(lib.dom.d.ts, --, --))
+
+];
+
